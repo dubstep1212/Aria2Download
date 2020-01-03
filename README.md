@@ -1,5 +1,24 @@
+
+## 目录
+* [前言](#前言)
+* [环境要求](#环境要求)
+* [安装必要组件](#安装必要组件)
+* [安装Nginx](#安装Nginx)
+* [安装Aria2](#安装Aria2)
+* [安装AriaNg](#安装AriaNg)
+* [配置Nginx虚拟主机](#配置Nginx虚拟主机)
+* [安装Rclone并挂载Google Drive](#安装Rclone并挂载GoogleDrive)
+    * [安装Rclone](#安装Rclone)
+    * [配置Rclone](#配置Rclone)
+    * [修改上传脚本](#修改上传脚本)
+    * [修改Aria2配置文件](#修改Aria2配置文件)
+* [总结](#总结)
+    * [Aria2使用说明](#Aria2使用说明)
+    * [Nginx使用说明](#Nginx使用说明)
+
+
 来源[https://www.yuque.com/docs/share/4c02f96e-5799-45ec-b208-709190fef793?#](https://www.yuque.com/docs/share/4c02f96e-5799-45ec-b208-709190fef793?#)
-<a name="3FvZk"></a>
+
 ## 前言
 随着Aria2的大火，[**Aria2**](https://aria2.github.io/)+[**AriaNg**](http://ariang.mayswind.net/zh_Hans/)+[**Rclone**](https://rclone.org/)+[**Google Drive**](https://drive.google.com/)模式的离线下载更成为各大博主的主流下载方式，博主把优化过的教程发出来。本教程主要通过AriaNg+Nginx提供Web界面，Aria2下载资源，下载后通过Rclone把资源自动上传到GoogleDrive，以达到离线下载资源的目的。
 
@@ -49,20 +68,20 @@ wget -N https://git.io/aria2.sh && chmod +x aria2.sh && bash aria2.sh #下载Ari
 ```bash
 bash aria2.sh
 ```
-输入<font color=#008000 >12</font>回车
+输入**12**回车
 
-<a name="xSkEC"></a>
+
 ## 安装AriaNg
 AriaNg是一个前端(HTML+JS静态)控制面板，不需要和Aria2(后端/服务端)放在一个服务器或者设备中，你甚至可以只在服务器上面搭建Aria2后端，然后访问别人建好的AriaNg前端面板，也可以远程操作Aria2后端！<br />**AriaNg官方演示页面：[http://ariang.mayswind.net/latest](http://ariang.mayswind.net/latest)**<br />**<br />创建Ariang目录**
 ```bash
 mkdir -p /data/www/ariang #创建一个Ariang目录
 cd /data/www/ariang #进入这个目录
 ```
-下载并解压AriaNg文件，这段代码会自动检测并下载最新版本(代码较长，请复制完整)
+下载并解压AriaNg文件，这段代码会自动检测并下载最新版本(**代码较长，请复制完整**)
 ```bash
 Ver=$(wget --no-check-certificate -qO- https://api.github.com/repos/mayswind/AriaNg/releases/latest | grep -o '"tag_name": ".*"' | sed 's/"//g;s/tag_name: //g') && echo ${Ver}
 ```
-如果上面自动检测最新版本的代码返回空白或者错误，那么请访问下面网址来查看最新版本号<br />[**https://github.com/mayswind/AriaNg/releases/latest**](https://github.com/mayswind/AriaNg/releases/latest)** **<br />例如手动获取的版本号是 1.1.4，那么手动执行命令： **Ver=1.1.4**，然后继续下面步骤即可<br />下载并解压AriaNg文件(代码较长，请复制完整)
+如果上面自动检测最新版本的代码返回空白或者错误，那么请访问下面网址来查看最新版本号<br />[**https://github.com/mayswind/AriaNg/releases/latest**](https://github.com/mayswind/AriaNg/releases/latest)** **<br />例如手动获取的版本号是 1.1.4，那么手动执行命令： **Ver=1.1.4**，然后继续下面步骤即可<br />下载并解压AriaNg文件(**代码较长，请复制完整**)
 ```bash
 wget -N --no-check-certificate "https://github.com/mayswind/AriaNg/releases/download/${Ver}/AriaNg-${Ver}.zip" && unzip AriaNg-${Ver}.zip && rm -rf AriaNg-${Ver}.zip
 ```
@@ -77,7 +96,7 @@ touch ariang.conf #创建配置文件
 vim ariang.conf #编辑配置文件
 ```
 
-按键盘**I**键或**Insert**键进入修改模式，复制粘贴以下配置(复制粘贴时请仔细对照一下，有时候可能粘贴不全)
+按键盘**I**键或**Insert**键进入修改模式，复制粘贴以下配置(**复制粘贴时请仔细对照一下，有时候可能粘贴不全**)
 ```nginx
 server {
     listen 80;
@@ -117,11 +136,11 @@ SELINUX=disabled
 reboot
 ```
 
-重启好后访问IP地址或域名即可看到AriaNg Web界面，并按照下图1-4步骤填写Aria2 RPC密钥(该密钥为前面安装Aria2时生成配置信息中的密码)![sp200103_151356.png](https://cdn.nlark.com/yuque/0/2020/png/393161/1578035707646-7fe49690-3c47-4124-b5a4-1518a5b39cef.png#align=left&display=inline&height=716&name=sp200103_151356.png&originHeight=716&originWidth=1232&size=78161&status=done&style=none&width=1232)
+重启好后访问IP地址或域名即可看到AriaNg Web界面，并按照下图1-4步骤填写Aria2 RPC密钥(**该密钥为前面安装Aria2时生成配置信息中的密码**)![sp200103_151356.png](https://cdn.nlark.com/yuque/0/2020/png/393161/1578035707646-7fe49690-3c47-4124-b5a4-1518a5b39cef.png#align=left&display=inline&height=716&name=sp200103_151356.png&originHeight=716&originWidth=1232&size=78161&status=done&style=none&width=1232)
 
-<a name="P8JCx"></a>
-## 安装Rclone并挂载Google Drive
-<a name="k2Lle"></a>
+
+## 安装Rclone并挂载GoogleDrive
+
 #### 安装Rclone
 ```bash
 cd ~ #回到根目录
@@ -216,7 +235,7 @@ service aria2 restart
 <a name="ovG4y"></a>
 ## 总结<br />
 <a name="m9Dwo"></a>
-#### Aria2使用说明：
+#### Aria2使用说明
 
 - 菜单：bash /root/aria2.sh
 - 启动：/etc/init.d/aria2 start
