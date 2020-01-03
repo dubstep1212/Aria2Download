@@ -3,8 +3,8 @@
 ## 前言
 随着Aria2的大火，[**Aria2**](https://aria2.github.io/)+[**AriaNg**](http://ariang.mayswind.net/zh_Hans/)+[**Rclone**](https://rclone.org/)+[**Google Drive**](https://drive.google.com/)模式的离线下载更成为各大博主的主流下载方式，博主把优化过的教程发出来。本教程主要通过AriaNg+Nginx提供Web界面，Aria2下载资源，下载后通过Rclone把资源自动上传到GoogleDrive，以达到离线下载资源的目的。
 
-_注：网上的大部分教程有严重的_**_BUG_**_，下载到VPS的文件并不能自动删除，当下载到硬盘满了之后就无法再继续运行，而且会上传.Aria2后缀文件碎片，本教程经过二次修改后脚本采用移动方式上传到网盘。_<br />_
-<a name="T6RH6"></a>
+_注：网上的大部分教程有严重的_**_BUG_**_，下载到VPS的文件并不能自动删除，当下载到硬盘满了之后就无法再继续运行，而且会上传.Aria2后缀文件碎片，本教程经过二次修改后脚本采用移动方式上传到网盘。_<br />
+
 ## 环境要求
 
 - 系统支持：CentOS6+ / Debian6+ / Ubuntu14+
@@ -49,11 +49,11 @@ wget -N https://git.io/aria2.sh && chmod +x aria2.sh && bash aria2.sh #下载Ari
 ```bash
 bash aria2.sh
 ```
-输入**12**回车
+输入<font color=#008000 >12</font>回车
 
 <a name="xSkEC"></a>
 ## 安装AriaNg
-AriaNg是一个前端(HTML+JS静态)控制面板，不需要和Aria2(后端/服务端)放在一个服务器或者设备中，你甚至可以只在服务器上面搭建Aria2后端，然后访问别人建好的AriaNg前端面板，也可以远程操作Aria2后端！<br />**AriaNg官方演示页面：[http://ariang.mayswind.net/latest](http://ariang.mayswind.net/latest)**<br />**<br />创建Ariang目录
+AriaNg是一个前端(HTML+JS静态)控制面板，不需要和Aria2(后端/服务端)放在一个服务器或者设备中，你甚至可以只在服务器上面搭建Aria2后端，然后访问别人建好的AriaNg前端面板，也可以远程操作Aria2后端！<br />**AriaNg官方演示页面：[http://ariang.mayswind.net/latest](http://ariang.mayswind.net/latest)**<br />**<br />创建Ariang目录**
 ```bash
 mkdir -p /data/www/ariang #创建一个Ariang目录
 cd /data/www/ariang #进入这个目录
@@ -102,7 +102,7 @@ systemctl reload nginx
 ```bash
 vim /etc/selinux/config
 ```
-按键盘**I**键或**Insert**键进入修改模式<br />找到**SELINUX=enforcing**这行，并用**#**注释掉，并在下一行加上**SELINUX=disabled**
+按键盘**I**键或**Insert**键进入修改模式<br />找到**SELINUX=enforcing**这行，并用#注释掉，并在下一行加上**SELINUX=disabled**
 ```shell
 #SELINUX=enforcing
 SELINUX=disabled
@@ -140,9 +140,9 @@ curl https://rclone.org/install.sh | bash
 ```bash
 rclone config
 ```
-[root@localhost[ ]()~]# **rclone config**<br />2020/01/03 02:41:17 NOTICE: Config file "/root/.config/rclone/rclone.conf" not found - using defaults<br />No remotes found - make a new one<br />n) New remote<br />s) Set configuration password<br />q) Quit config<br />n/s/q>** n**<br />name> **GD****(该名称为Rclone****挂载的名称可以随便填，但要记住，后面会用到)**<br />Type of storage to configure.<br />Enter a string value. Press Enter for the default ("").<br />Choose a number from below, or type in your own value<br />1 / 1Fichier<br />   \ "fichier"<br />2 / Alias for an existing remote<br />   \ "alias"<br />3 / Amazon Drive<br />   \ "amazon cloud drive"<br />4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)<br />   \ "s3"<br />5 / Backblaze B2<br />   \ "b2"<br />6 / Box<br />   \ "box"<br />7 / Cache a remote<br />   \ "cache"<br />8 / Citrix Sharefile<br />   \ "sharefile"<br />9 / Dropbox<br />   \ "dropbox"<br />10 / Encrypt/Decrypt a remote<br />    \ "crypt"<br />11 / FTP Connection<br />    \ "ftp"<br />12 / Google Cloud Storage (this is not Google Drive)<br />    \ "google cloud storage"<br />**13 / Google Drive**<br />**    \ "drive"**<br />14 / Google Photos<br />    \ "google photos"<br />15 / Hubic<br />    \ "hubic"<br />16 / JottaCloud<br />    \ "jottacloud"<br />17 / Koofr<br />    \ "koofr"<br />18 / Local Disk<br />    \ "local"<br />19 / Mail.ru Cloud<br />    \ "mailru"<br />20 / Mega<br />    \ "mega"<br />21 / Microsoft Azure Blob Storage<br />    \ "azureblob"<br />22 / Microsoft OneDrive<br />    \ "onedrive"<br />23 / OpenDrive<br />    \ "opendrive"<br />24 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)<br />    \ "swift"<br />25 / Pcloud<br />    \ "pcloud"<br />26 / Put.io<br />    \ "putio"<br />27 / QingCloud Object Storage<br />    \ "qingstor"<br />28 / SSH/SFTP Connection<br />    \ "sftp"<br />29 / Transparently chunk/split large files<br />    \ "chunker"<br />30 / Union merges the contents of several remotes<br />    \ "union"<br />31 / Webdav<br />    \ "webdav"<br />32 / Yandex Disk<br />    \ "yandex"<br />33 / http Connection<br />    \ "http"<br />34 / premiumize.me<br />    \ "premiumizeme"<br />Storage> **13(由于Rclone官方会更新，13并不一定是Google Drive，所以填入需要配置的网盘对应的序号即可)**<br />** **See help for drive backend at: https://rclone.org/drive/** **
+[root@localhost[ ]()~]# **rclone config**<br />2020/01/03 02:41:17 NOTICE: Config file "/root/.config/rclone/rclone.conf" not found - using defaults<br />No remotes found - make a new one<br />n) New remote<br />s) Set configuration password<br />q) Quit config<br />n/s/q>**n**<br />name> **GD**(该名称为Rclone挂载的名称可以随便填，但要记住，后面会用到)<br />Type of storage to configure.<br />Enter a string value. Press Enter for the default ("").<br />Choose a number from below, or type in your own value<br />1 / 1Fichier<br />   \ "fichier"<br />2 / Alias for an existing remote<br />   \ "alias"<br />3 / Amazon Drive<br />   \ "amazon cloud drive"<br />4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)<br />   \ "s3"<br />5 / Backblaze B2<br />   \ "b2"<br />6 / Box<br />   \ "box"<br />7 / Cache a remote<br />   \ "cache"<br />8 / Citrix Sharefile<br />   \ "sharefile"<br />9 / Dropbox<br />   \ "dropbox"<br />10 / Encrypt/Decrypt a remote<br />    \ "crypt"<br />11 / FTP Connection<br />    \ "ftp"<br />12 / Google Cloud Storage (this is not Google Drive)<br />    \ "google cloud storage"<br />**13 / Google Drive<br />    \ "drive"**<br />14 / Google Photos<br />    \ "google photos"<br />15 / Hubic<br />    \ "hubic"<br />16 / JottaCloud<br />    \ "jottacloud"<br />17 / Koofr<br />    \ "koofr"<br />18 / Local Disk<br />    \ "local"<br />19 / Mail.ru Cloud<br />    \ "mailru"<br />20 / Mega<br />    \ "mega"<br />21 / Microsoft Azure Blob Storage<br />    \ "azureblob"<br />22 / Microsoft OneDrive<br />    \ "onedrive"<br />23 / OpenDrive<br />    \ "opendrive"<br />24 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)<br />    \ "swift"<br />25 / Pcloud<br />    \ "pcloud"<br />26 / Put.io<br />    \ "putio"<br />27 / QingCloud Object Storage<br />    \ "qingstor"<br />28 / SSH/SFTP Connection<br />    \ "sftp"<br />29 / Transparently chunk/split large files<br />    \ "chunker"<br />30 / Union merges the contents of several remotes<br />    \ "union"<br />31 / Webdav<br />    \ "webdav"<br />32 / Yandex Disk<br />    \ "yandex"<br />33 / http Connection<br />    \ "http"<br />34 / premiumize.me<br />    \ "premiumizeme"<br />Storage> **13(由于Rclone官方会更新，13并不一定是Google Drive，所以填入需要配置的网盘对应的序号即可)**<br /> See help for drive backend at: https://rclone.org/drive/
 
-Google Application Client Id<br />Setting your own is recommended.<br />See https://rclone.org/drive/#making-your-own-client-id for how to create your own.<br />If you leave this blank, it will use an internal key which is low performance.<br />Enter a string value. Press Enter for the default ("").<br />client_id>**直接回车**<br />Google Application Client Secret<br />Setting your own is recommended.<br />Enter a string value. Press Enter for the default ("").<br />client_secret>**直接回车**<br />Scope that rclone should use when requesting access from drive.<br />Enter a string value. Press Enter for the default ("").<br />Choose a number from below, or type in your own value<br />1 / Full access all files, excluding Application Data Folder.<br />   \ "drive"<br />2 / Read-only access to file metadata and file contents.<br />   \ "drive.readonly"<br />   / Access to files created by rclone only.<br />3 | These are visible in the drive website.<br />   | File authorization is revoked when the user deauthorizes the app.<br />   \ "drive.file"<br />   / Allows read and write access to the Application Data folder.<br />4 | This is not visible in the drive website.<br />   \ "drive.appfolder"<br />   / Allows read-only access to file metadata but<br />5 | does not allow any access to read or download file content.<br />   \ "drive.metadata.readonly"<br />scope>** 1**<br />ID of the root folder<br />Leave blank normally.
+Google Application Client Id<br />Setting your own is recommended.<br />See https://rclone.org/drive/#making-your-own-client-id for how to create your own.<br />If you leave this blank, it will use an internal key which is low performance.<br />Enter a string value. Press Enter for the default ("").<br />client_id>**直接回车**<br />Google Application Client Secret<br />Setting your own is recommended.<br />Enter a string value. Press Enter for the default ("").<br />client_secret>**直接回车**<br />Scope that rclone should use when requesting access from drive.<br />Enter a string value. Press Enter for the default ("").<br />Choose a number from below, or type in your own value<br />1 / Full access all files, excluding Application Data Folder.<br />   \ "drive"<br />2 / Read-only access to file metadata and file contents.<br />   \ "drive.readonly"<br />   / Access to files created by rclone only.<br />3 | These are visible in the drive website.<br />   | File authorization is revoked when the user deauthorizes the app.<br />   \ "drive.file"<br />   / Allows read and write access to the Application Data folder.<br />4 | This is not visible in the drive website.<br />   \ "drive.appfolder"<br />   / Allows read-only access to file metadata but<br />5 | does not allow any access to read or download file content.<br />   \ "drive.metadata.readonly"<br />scope>**1**<br />ID of the root folder<br />Leave blank normally.
 
 Fill in to access "Computers" folders (see docs), or for rclone to use<br />a non root folder as its starting point.
 
@@ -160,7 +160,7 @@ Enter verification code> **4/vAGEnm1Vm2O7Ba**************************<br />
 Configure this as a team drive?<br />
 y) Yes<br />
 n) No<br />
-y/n>** y**<br />
+y/n>**y**<br />
 Fetching team drive list...<br />
 Choose a number from below, or type in your own value<br />1 / dd<br />   \ "0AAk7UDUUk9PVA"<br />
 Enter a Team Drive ID> **1**<br />----------------------------<br />[GD]<br />type = drive<br />scope = drive<br />token = {"access_token":"ya29.Il4B97vj2p_*****************","token_type":"Bearer","refresh_token":"1//0eINZ8S2xdmkPdzFk7-*************","expiry":"2020-0103T03:44:19.994344966-05:00"}
@@ -194,8 +194,8 @@ vim /root/.aria2/aria2.conf
 ```
 按键盘**I**键或**Insert**键进入修改模式<br />修改为以下内容
 
-- 在**on-download-complete=/root/.aria2/delete.aria2.sh**前面加上**#**号
-- 把**#on-download-complete=/root/.aria2/autoupload.sh**前面**#**号去掉
+- 在on-download-complete=/root/.aria2/delete.aria2.sh前面加上#号
+- 把#on-download-complete=/root/.aria2/autoupload.sh前面#号去掉
 ```shell
 # 下载完成后执行的命令
 # 删除.aria2文件
@@ -212,7 +212,7 @@ on-download-complete=/root/.aria2/autoupload.sh
 service aria2 restart
 ```
 
-**到此为止****离线下载****已经完美搞定，输入服务器网址或域名到****AriaNg Web页面进行下载资源，下载完成后直接到Google Drive中进行查看。**<br />**![QQ截图20200103231317.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/393161/1578064452665-13d0ea62-5f70-4563-af00-7bae5b291f42.jpeg#align=left&display=inline&height=718&name=QQ%E6%88%AA%E5%9B%BE20200103231317.jpg&originHeight=718&originWidth=1232&size=40317&status=done&style=none&width=1232)**<br />**
+**到此为止离线下载已经完美搞定，输入服务器网址或域名到AriaNg Web页面进行下载资源，下载完成后直接到Google Drive中进行查看。**<br />![QQ截图20200103231317.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/393161/1578064452665-13d0ea62-5f70-4563-af00-7bae5b291f42.jpeg#align=left&display=inline&height=718&name=QQ%E6%88%AA%E5%9B%BE20200103231317.jpg&originHeight=718&originWidth=1232&size=40317&status=done&style=none&width=1232)<br />
 <a name="ovG4y"></a>
 ## 总结<br />
 <a name="m9Dwo"></a>
