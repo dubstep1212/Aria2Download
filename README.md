@@ -7,7 +7,7 @@
 * [安装Aria2](#安装Aria2)
 * [安装AriaNg](#安装AriaNg)
 * [配置Nginx虚拟主机](#配置Nginx虚拟主机)
-* [安装Rclone并挂载Google Drive](#安装Rclone并挂载GoogleDrive)
+* [安装Rclone并挂载Google Drive](#安装Rclone并挂载Google Drive)
     * [安装Rclone](#安装Rclone)
     * [配置Rclone](#配置Rclone)
     * [修改上传脚本](#修改上传脚本)
@@ -139,7 +139,7 @@ reboot
 重启好后访问IP地址或域名即可看到AriaNg Web界面，并按照下图1-4步骤填写Aria2 RPC密钥(**该密钥为前面安装Aria2时生成配置信息中的密码**)![sp200103_151356.png](https://cdn.nlark.com/yuque/0/2020/png/393161/1578035707646-7fe49690-3c47-4124-b5a4-1518a5b39cef.png#align=left&display=inline&height=716&name=sp200103_151356.png&originHeight=716&originWidth=1232&size=78161&status=done&style=none&width=1232)
 
 
-## 安装Rclone并挂载GoogleDrive
+## 安装Rclone并挂载Google Drive
 
 #### 安装Rclone
 ```bash
