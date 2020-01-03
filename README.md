@@ -17,7 +17,7 @@
     * [Nginx使用说明](#Nginx使用说明)
 
 
-来源[https://www.yuque.com/docs/share/4c02f96e-5799-45ec-b208-709190fef793?#](https://www.yuque.com/docs/share/4c02f96e-5799-45ec-b208-709190fef793?#)
+来源[https://www.yuque.com/dubstep/gm3uwo/ghpddr](https://www.yuque.com/dubstep/gm3uwo/ghpddr)
 
 ## 前言
 随着Aria2的大火，[**Aria2**](https://aria2.github.io/)+[**AriaNg**](http://ariang.mayswind.net/zh_Hans/)+[**Rclone**](https://rclone.org/)+[**Google Drive**](https://drive.google.com/)模式的离线下载更成为各大博主的主流下载方式，博主把优化过的教程发出来。本教程主要通过AriaNg+Nginx提供Web界面，Aria2下载资源，下载后通过Rclone把资源自动上传到GoogleDrive，以达到离线下载资源的目的。
