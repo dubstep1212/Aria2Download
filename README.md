@@ -107,7 +107,7 @@ server {
     }
 }
 ```
-把以上配置中**server_name**右边的**IP**地址改成你自己的服务器IP或域名<br />保存并退出
+把以上配置中**server_name**右边的**IP**改成你自己服务器的**IP地址**或**域名**<br />保存并退出
 ```shell
 :wq
 ```
@@ -231,7 +231,7 @@ on-download-complete=/root/.aria2/autoupload.sh
 service aria2 restart
 ```
 
-**到此为止离线下载已经完美搞定，输入服务器网址或域名到AriaNg Web页面进行下载资源，下载完成后直接到Google Drive中进行查看。**<br />![QQ截图20200103231317.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/393161/1578064452665-13d0ea62-5f70-4563-af00-7bae5b291f42.jpeg#align=left&display=inline&height=718&name=QQ%E6%88%AA%E5%9B%BE20200103231317.jpg&originHeight=718&originWidth=1232&size=40317&status=done&style=none&width=1232)<br />
+**到此为止离线下载已经完美搞定，输入服务器网址或域名到AriaNg Web页面进行下载资源，下载完成后直接到Google Drive中进行查看。**<br />![QQ截图20200103231317.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/393161/1578064452665-13d0ea62-5f70-4563-af00-7bae5b291f42.jpeg#align=left&display=inline&height=718&name=QQ%E6%88%AA%E5%9B%BE20200103231317.jpg&originHeight=718&originWidth=1232&size=40317&status=done&style=none&width=1232)**<br />**<br />**![QQ截图20200104155732.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/393161/1578148299285-1ad9c2b2-c7f5-47ad-976d-3108b6f87ca5.jpeg#align=left&display=inline&height=719&name=QQ%E6%88%AA%E5%9B%BE20200104155732.jpg&originHeight=719&originWidth=1507&size=72796&status=done&style=none&width=1507)**<br />
 <a name="ovG4y"></a>
 ## 总结<br />
 <a name="m9Dwo"></a>
